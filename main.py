@@ -1,9 +1,12 @@
 from openai import OpenAI
 
+from dotenv import load_dotenv
+import os
 
 def main():
+    load_dotenv()
     client = OpenAI(
-        api_key="GEMINI_API_KEY",
+        api_key=os.getenv("GEMINI_API_KEY"),
         base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
     )
 
@@ -20,7 +23,7 @@ def main():
         ]
 )
 
-    print(response.choices[0].message)
+    print(response.choices[0].message.content)
 
 if __name__ == "__main__":    
     main()
